@@ -1,0 +1,18 @@
+.emailField {
+    margin-left: 55px;
+}
+
+.phoneField {
+    margin-top: 7px;
+}
+
+.dropZoneCls {
+    height: '140px';    
+}
+
+.error {
+    color: red;    
+}
+.textField {
+    margin-top: 17px;
+}

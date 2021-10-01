@@ -1,0 +1,123 @@
+
+.main {
+    width: 95vw;
+    height: 80vh;
+}
+#circle{
+    width:200px;
+    height:200px;
+    border-radius:100px;    
+    background-color:#363552;
+}
+@keyframes positioncercle {
+    0%{top:150px;}
+    50%{top:300px;}
+    100%{top:150px;}
+}
+#circle p{
+    font-family:'Courier New', monospace;
+    font-weight:100;
+    color:#c8e0eb;
+    font-size: 3em;
+    text-align:center;
+    margin:auto;
+    line-height:200px;
+    animation-name: couleurtxt;
+    animation-duration: 20s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    
+}
+
+#barrereseaux{
+  position: relative;
+    display:flex;
+    flex-direction: column;
+    flex-direction: wrap;
+    width:auto;
+    float: right;
+    right: 15px;;
+    height:100%;
+    align-content:space-around;
+    position:fixed;
+    bottom:20px;
+    top:250px;
+}
+
+
+a{
+    animation-name: couleurtxt;
+    animation-duration: 20s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    transition:0.5s;
+}
+
+a:hover{
+    opacity:0.7;
+}
+
+#floatingTextBlock{
+    width:auto;
+    height:auto;
+    color:purple;
+    font-family:'Arial Narrow Bold', sans-serif;
+    font-weight:900;
+    font-style: italic;
+    font-size:2em;
+    line-break: 15px;
+    line-height: 200x;
+    margin:auto;
+}
+
+#move{
+    position:absolute;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width:auto;
+    height:auto;
+    top:auto;
+    left: 50%;
+    transform: translate(-50%);
+    animation-name: positioncercle1;
+    animation-duration: 20s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    text-align:center;
+}
+
+
+@keyframes positioncercle1 {
+    0%{top:2vh;}
+    50%{top:12vh;}
+    100%{top:2vh;}
+} 
+
+@keyframes animres {
+    0%{width:80px;
+        height:80px;;}
+    50%{width:90px;
+        height:90px;}
+    100%{width:80px;
+        height:80px;}
+}
+@media (max-width:800px) {
+    @keyframes animres {
+        0%{width:40px;
+            height:40px;;}
+        50%{width:50px;
+            height:50px;}
+        100%{width:40px;
+            height:40px;}
+    }
+    #Bienvenue{
+        font-size:1em;
+    }
+    #barrereseaux a{
+        font-size:0.7em;
+        padding:1em;
+        line-height:45px;
+    }
+}

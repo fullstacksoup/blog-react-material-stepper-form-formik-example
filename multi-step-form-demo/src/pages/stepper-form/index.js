@@ -182,11 +182,6 @@ export default function StepperForm() {
 
   const [ isTermChecked, setIsTermChecked ] = useState(false);
     
-  const [ showPersonalInfoFormErrors, setShowPersonalInfoFormErrors ] = useState(false);
-  const [ showAdditionQuestionsForm, setShowAdditionQuestionsForm ] = useState(false);
-  const [ showAddImageErrors, setShowAddImageFormErrors ] = useState(false);  
-
-
 //********************************************************************************************************************************* */
 //*  F O R M I K
 //********************************************************************************************************************************* */

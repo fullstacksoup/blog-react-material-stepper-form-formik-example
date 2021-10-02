@@ -4,15 +4,7 @@ import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import Alert from '@material-ui/lab/Alert';
 export default function TermsConditionsForm(props) {
-
-    const [isTermChecked, setIsTermChecked] = useState(false);
-
-    const handleChange = event => {
-        
-        const val = event.target.checked;                        
-        setIsTermChecked(val)        
-        props.handleIsTermChecked(val);
-    }
+    
     return (
 
         <div >
@@ -34,7 +26,7 @@ export default function TermsConditionsForm(props) {
                 Terms & Conditions   
                  <Checkbox 
                           checked={props.isTermChecked}
-                          onChange={handleChange}
+                          onChange={(e) => props.handleIsTermChecked(e)}
                           onBlur={props.formik.handleBlur}                            
                           inputProps={{ 'aria-label': 'primary checkbox' }} />  
             </Typography>

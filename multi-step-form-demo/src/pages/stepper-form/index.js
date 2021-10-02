@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import clsx from 'clsx';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -340,9 +339,6 @@ export default function StepperForm() {
     }
   }
 
-
-
-
   const handleSubmit = () => {        
     switch (activeStep) {
       case 0: formikPersonalInfo.handleSubmit(); break;
@@ -387,10 +383,9 @@ export default function StepperForm() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <main className={classes.layout}>              
         <Grid container spacing={3}>
-        <Grid item xs={6}>
+        <Grid item xs={12} lg={3} xl={3}></Grid>
+        <Grid item xs={12} lg={6} xl={6}>
         <Paper className={classes.paper}>
           <form noValidate autoComplete="off">
             <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
@@ -448,12 +443,8 @@ export default function StepperForm() {
           </form>
           </Paper>
         </Grid>
-        <Grid item xs={6}>
-
-        </Grid>
-      </Grid>
-      
-    </main>
+        <Grid item xs={12} lg={3} xl={3}></Grid>                
+      </Grid>          
     </React.Fragment>
   );
 }

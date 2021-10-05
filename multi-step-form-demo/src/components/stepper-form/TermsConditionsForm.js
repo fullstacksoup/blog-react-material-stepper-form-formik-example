@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -25,9 +25,10 @@ export default function TermsConditionsForm(props) {
             <Typography variant="h6" align="center">
                 Terms & Conditions   
                  <Checkbox 
-                          checked={props.isTermChecked}
-                          onChange={(e) => props.handleIsTermChecked(e)}
-                          onBlur={props.formik.handleBlur}                            
+                          name="isTermChecked"
+                          checked={props.formik.values.isTermChecked}
+                          onChange={props.formik.handleChange}
+                          onBlur={props.formik.handleBlur}                                    
                           inputProps={{ 'aria-label': 'primary checkbox' }} />  
             </Typography>
         </div>

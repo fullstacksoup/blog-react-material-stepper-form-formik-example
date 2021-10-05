@@ -179,10 +179,9 @@ export default function StepperForm() {
   const [ hasFiles, setHasFiles ] = useState(false);
   const [ files, setFiles ] = useState([]);
 
-  const [ isTermChecked, setIsTermChecked ] = useState(false);
     
 //********************************************************************************************************************************* */
-//*  F O R M I K
+//*  Y U P   V A L I D A T I O N    S C H E M A S 
 //********************************************************************************************************************************* */
 
   const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -239,11 +238,17 @@ export default function StepperForm() {
 
   const termConditionsSchema = yup.object().shape({
     isTermChecked: yup      
-      .boolean()
-      .required()
-      .test(val => val !== isTermChecked)
+      .boolean("Agree to Terms & Conditions")
+      .required("Please Agree to Terms & Conditions")
+      .test(val => val !== false)
   });
   
+
+//********************************************************************************************************************************* */
+//*  F O R M I K
+//********************************************************************************************************************************* */
+
+
   const formikPersonalInfo = useFormik({
     initialValues: {
       name: '',        
@@ -285,8 +290,7 @@ export default function StepperForm() {
   const formikTermsConditions = useFormik({    
     initialValues: {
       isTermChecked: false,      
-    },
-    // validate,
+    },    
     validationSchema: termConditionsSchema,
     onSubmit: values => {                  
       handleFormSubmit();  
@@ -306,6 +310,9 @@ export default function StepperForm() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const handleReset = () => {
+    setActiveStep(0);
+  };
 
   const getStepContent = (step) => {
     switch (step) {
@@ -328,9 +335,7 @@ export default function StepperForm() {
                 </>);
         case 3:        
           return (<>
-                  <TermsConditionsForm 
-                                handleIsTermChecked={handleIsTermChecked}
-                                isTermChecked={isTermChecked}
+                  <TermsConditionsForm                                                              
                                 formik={formikTermsConditions}
                             />
               </>);                
@@ -365,9 +370,6 @@ export default function StepperForm() {
     alert(JSON.stringify(data, null, 2));
   }
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
   
   const handleDropzoneChange = (files) => {       
     setFiles(files);       
@@ -377,9 +379,7 @@ export default function StepperForm() {
     setHasFiles(val);    
   }
 
-  const handleIsTermChecked = (val) => {    
-    setIsTermChecked(val);    
-  }
+
 
   return (
     <React.Fragment>

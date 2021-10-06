@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import styles from 'styles/EventForm.module.css';
 
 export default function EventForm(props) {   
-
+    const CHARACTER_LIMIT = 200;
     return (
         < >
             <Container maxWidth="sm">
@@ -43,7 +43,7 @@ export default function EventForm(props) {
                                         onBlur={props.formik.handleBlur}
                                         value={props.formik.values.description}
                                         error={props.formik.touched.description && Boolean(props.formik.errors.description)}
-                                        helperText={props.formik.touched.description && props.formik.errors.description}             
+                                        helperText={!(props.formik.touched.description && Boolean(props.formik.errors.description)) ? `${props.formik.values.description.length}/${CHARACTER_LIMIT}` :  `${props.formik.values.description.length}/${CHARACTER_LIMIT} ${props.formik.errors.description}`}                                             
                                  />
                     
                 </Grid>

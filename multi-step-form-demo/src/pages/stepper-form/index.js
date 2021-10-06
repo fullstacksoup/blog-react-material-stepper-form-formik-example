@@ -22,7 +22,7 @@ import EventForm from 'components/stepper-form/EventForm';
 import AddImageForm from 'components/stepper-form/AddImageForm';
 import TermsConditionsForm from 'components/stepper-form/TermsConditionsForm';
 import { format, addDays } from 'date-fns'
-
+import { capitalize } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -183,7 +183,6 @@ export default function StepperForm() {
 //********************************************************************************************************************************* */
 //*  Y U P   V A L I D A T I O N    S C H E M A S 
 //********************************************************************************************************************************* */
-
   const phoneRegExp = /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
   const personalInfoValidationSchema = yup.object({
@@ -201,7 +200,7 @@ export default function StepperForm() {
       .required('Phone is required'),    
     location: yup
       .string('Not Required')                  
-    });
+  });
 
   const eventValidationSchema = yup.object({
     title: yup
@@ -243,11 +242,9 @@ export default function StepperForm() {
       .test(val => val !== false)
   });
   
-
 //********************************************************************************************************************************* */
 //*  F O R M I K
 //********************************************************************************************************************************* */
-
 
   const formikPersonalInfo = useFormik({
     initialValues: {
@@ -286,7 +283,6 @@ export default function StepperForm() {
     },
   });
 
-
   const formikTermsConditions = useFormik({    
     initialValues: {
       isTermChecked: false,      
@@ -297,11 +293,10 @@ export default function StepperForm() {
     },
   });
 
-
-
 //********************************************************************************************************************************* */
 //*  H A N D L E   S T E P P E R
 //********************************************************************************************************************************* */
+
   const handleNext = () => {    
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -356,8 +351,8 @@ export default function StepperForm() {
   
   const handleFormSubmit = () => {
     var data = {
-      Name: formikPersonalInfo.values.name,        
-      Email: formikPersonalInfo.values.email,        
+      Name: capitalize(formikPersonalInfo.values.name),        
+      Email: formikPersonalInfo.values.email.toLowerCase(),        
       Phone: formikPersonalInfo.values.phone,        
       Location: formikPersonalInfo.values.location,        
       EventTitle: formikEvents.values.title,        
@@ -370,7 +365,6 @@ export default function StepperForm() {
     alert(JSON.stringify(data, null, 2));
   }
 
-  
   const handleDropzoneChange = (files) => {       
     setFiles(files);       
   }
@@ -379,11 +373,9 @@ export default function StepperForm() {
     setHasFiles(val);    
   }
 
-
-
   return (
     <React.Fragment>
-        <Grid container spacing={3}>
+      <Grid container spacing={3}>
         <Grid item xs={12} lg={3} xl={3}></Grid>
         <Grid item xs={12} lg={6} xl={6}>
         <Paper className={classes.paper}>
@@ -407,8 +399,9 @@ export default function StepperForm() {
                 </div>
               ) : (
                 <div>
-                  <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
                   
+                  {getStepContent(activeStep)}
+                                      
                   <React.Fragment>
                     <div className={classes.buttons}>
                     <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
